@@ -23,9 +23,18 @@
 
 ## Deploy Your Own
 
-You can deploy your own version of the AI SDK Image Generator to Vercel by clicking the button below:
+You can deploy your own version of the AI SDK Image Generator to Vercel with the Fal integration pre-wired:
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?project-name=FAL+x+Vercel+Image+Generator&repository-name=vercel-fal-image-generator&repository-url=https%3A%2F%2Fgithub.com%2Fvercel-labs%2Fvercel-fal-image-generator&demo-title=FAL+x+Vercel+Image+Generator&demo-url=https%3A%2F%2Ffal-image-generator.vercel.app%2F&demo-description=An+open-source+AI+image+generation+app+template+built+with+Next.js%2C+the+AI+SDK+by+Vercel%2C+and+FAL&products=%5B%7B%22type%22%3A%22integration%22%2C%22protocol%22%3A%22ai%22%2C%22productSlug%22%3A%22fal%22%2C%22integrationSlug%22%3A%22fal%22%7D%5D)
+
+Or deploy the Quirk Systems fork to another host:
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/quirk-systems/quirk-generator)
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https%3A%2F%2Fgithub.com%2Fquirk-systems%2Fquirk-generator)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/quirk-systems/quirk-generator)
+[![Deploy on Fly.io](https://fly.io/static/images/launch/deploy.svg)](https://fly.io/launch?repo=https%3A%2F%2Fgithub.com%2Fquirk-systems%2Fquirk-generator)
+
+> The non-Vercel hosts will not auto-configure the Fal integration; set `FAL_KEY` (and any other required env vars) on the host yourself. Render and Fly.io require a `render.yaml` / `fly.toml` in the repo to fully automate the deploy.
 
 ## Running Locally
 
