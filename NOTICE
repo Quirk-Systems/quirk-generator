@@ -1,0 +1,18 @@
+quirk-generator
+Copyright 2025-2026 Quirk Systems
+Copyright 2025 Vercel, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License").
+You may not use this product except in compliance with the License.
+A copy of the License is included in the LICENSE file at the root of
+this repository, and is also available at:
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+This product is derived from the AI SDK Image Generator template
+originally developed by Vercel Labs at:
+
+    https://github.com/vercel-labs/vercel-fal-image-generator
+
+Modifications and additions are Copyright 2025-2026 Quirk Systems
+(https://github.com/quirk-systems).
