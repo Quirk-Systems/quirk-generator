@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ImageModel, experimental_generateImage as generateImage } from "ai";
 import { createFal } from "@ai-sdk/fal";
+import { env } from "@/lib/env";
 import { ProviderKey } from "@/lib/provider-config";
 import { GenerateImageRequest } from "@/lib/api-types";
 
@@ -19,8 +20,8 @@ interface ProviderConfig {
 }
 
 const fal = createFal({
-  apiKey: process.env.FAL_KEY,
-})
+  apiKey: env.FAL_KEY,
+});
 
 const providerConfig: Record<ProviderKey, ProviderConfig> = {
   fal: {
@@ -29,7 +30,7 @@ const providerConfig: Record<ProviderKey, ProviderConfig> = {
   },
 };
 
-const withTimeout = <T>(
+const withTimeout = <T,>(
   promise: Promise<T>,
   timeoutMillis: number,
 ): Promise<T> => {
@@ -40,7 +41,6 @@ const withTimeout = <T>(
     ),
   ]);
 };
-
 
 export async function POST(req: NextRequest) {
   const requestId = Math.random().toString(36).substring(7);
@@ -53,7 +53,12 @@ export async function POST(req: NextRequest) {
       console.error(`${error} [requestId=${requestId}]`);
       return NextResponse.json({ error }, { status: 400 });
     }
-    console.log(provider, modelId);
+
+    if (!env.FAL_KEY) {
+      const error = "Image generation is not configured: set FAL_KEY";
+      console.error(`${error} [requestId=${requestId}]`);
+      return NextResponse.json({ error }, { status: 503 });
+    }
 
     const config = providerConfig[provider];
     const startstamp = performance.now();
