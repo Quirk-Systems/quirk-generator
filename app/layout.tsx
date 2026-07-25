@@ -1,22 +1,10 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/react";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  display: "swap",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
-  title: "Fal x Vercel Image Generator",
-  description: "An open-source AI image generator using the AI SDK and Fal via the Vercel Marketplace",
+  title: "Quirk Generator",
+  description:
+    "One prompt, many models — generate AI images side by side for the Quirkverse.",
 };
 
 export default function RootLayout({
@@ -25,11 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="font-sans antialiased">
-        {children}
-        <Analytics />
-      </body>
+    <html lang="en">
+      <body className="font-sans antialiased">{children}</body>
     </html>
   );
 }
