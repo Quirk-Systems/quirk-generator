@@ -1,0 +1,94 @@
+version: 2
+updates:
+  - package-ecosystem: bun
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 10
+    ignore:
+      # Runtime floor is Node 22 (ci.yml pins node-version: 22);
+      # @types/node majors must track the runtime, not lead it.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+      # The AI SDK v5 move is a coordinated migration (ai and its providers
+      # change API together), not an auto-bump. @ai-sdk/* is pre-1.0, so its
+      # minors break too.
+      - dependency-name: "ai"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@ai-sdk/*"
+        update-types:
+          ["version-update:semver-major", "version-update:semver-minor"]
+      # Peer-coupled: t3-env pins zod's major, and its pre-1.0 minors break.
+      - dependency-name: "zod"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@t3-oss/env-nextjs"
+        update-types:
+          ["version-update:semver-major", "version-update:semver-minor"]
+      # Tailwind v3 -> v4 is a planned, visually verified migration (CLAUDE.md
+      # "Known follow-ups"), not a dependency bump.
+      - dependency-name: "tailwindcss"
+        update-types: ["version-update:semver-major"]
+      # TypeScript 7 and ESLint 10 are outside the installed lint plugins'
+      # supported ranges; recheck upstream before lifting.
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "eslint"
+        update-types: ["version-update:semver-major"]
+    labels:
+      - dependencies
+    commit-message:
+      prefix: chore(deps)
+      prefix-development: chore(deps-dev)
+      include: scope
+    groups:
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+      next:
+        patterns:
+          - "next"
+          - "eslint-config-next"
+      ai:
+        patterns:
+          - "ai"
+          - "@ai-sdk/*"
+      radix:
+        patterns:
+          - "@radix-ui/*"
+      testing:
+        patterns:
+          - "vitest"
+          - "@vitest/*"
+          - "@vitejs/*"
+          - "vite-tsconfig-paths"
+          - "@testing-library/*"
+          - "@playwright/*"
+          - "jsdom"
+      tailwind:
+        patterns:
+          - "tailwindcss"
+          - "tailwindcss-animate"
+          - "tailwind-merge"
+          - "postcss"
+          - "prettier-plugin-tailwindcss"
+      linting:
+        patterns:
+          - "eslint*"
+          - "@eslint/*"
+          - "prettier*"
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    labels:
+      - dependencies
+      - github-actions
+    commit-message:
+      prefix: chore(ci)
+      include: scope
