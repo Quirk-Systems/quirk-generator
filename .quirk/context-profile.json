@@ -1,0 +1,45 @@
+{
+  "format": "quirk-context-profile-candidate/0.1",
+  "repository": "Quirk-Systems/quirk-generator",
+  "observed_base": "8b5d979e3c4cb42f076d2bf5836267e290bf873f",
+  "scope": "creative generation contributor guidance",
+  "domain": "creative",
+  "status": "candidate",
+  "authority_effect": "none",
+  "contract": {
+    "repository": "Quirk-Systems/quirk-core",
+    "path": "contracts/context-continuity/v0.1/README.md",
+    "sha256": "35be29f9db49b7408fae2c3b7a89be4ac9166760d9d53ee687ef876f05ced067"
+  },
+  "requirements": [
+    "QC01",
+    "QC02",
+    "QC03",
+    "QC04",
+    "QC05",
+    "QC06",
+    "QC07",
+    "QC08",
+    "QC09",
+    "QC10",
+    "QC11",
+    "QC12"
+  ],
+  "inheritance": "Children inherit this profile unless a scoped local difference is declared.",
+  "acceptance_cases": [
+    "Keep exact prompts and intentional variants separate from normalized summaries.",
+    "Allow a bounded first attempt without prior performance evidence; distinguish attempted failure from untried."
+  ],
+  "refresh": "At task start or material correction; recheck access before consequential action.",
+  "coverage": {
+    "authored": true,
+    "delivered": false,
+    "loaded": false,
+    "behavior_tested": false,
+    "deployed": false
+  },
+  "limitations": [
+    "This profile changes contributor guidance; application context loading is not established.",
+    "Participant experience and human maintenance burden are unmeasured."
+  ]
+}
